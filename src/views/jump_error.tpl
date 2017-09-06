@@ -1,0 +1,1 @@
+<strong>{{name}}</strong>-><strong>{{host}}</strong> <font color="red">Error: {{error}}</font>
