@@ -1,2 +1,2 @@
-<strong>{{name}}</strong>-><strong>{{host}}</strong> <font color="green">Successful</font><br/>
+<strong>{{name}}</strong>-&gt;<strong>{{host}}</strong> <font color="green">Successful</font><br/>
 {{!response}}
