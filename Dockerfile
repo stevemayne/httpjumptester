@@ -16,4 +16,8 @@ RUN chmod +x /code/jump.py
 ENV IDENTIFIER Unnamed
 EXPOSE 8080
 
+RUN groupadd -r jumper && useradd -r -g jumper jumper
+RUN chown -R jumper.jumper /code
+USER jumper
+
 CMD ["/code/jump.py"]
