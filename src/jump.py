@@ -40,7 +40,8 @@ def jump(hoproute):
         hops = hops[1:]
         return do_next_hop(next_hop, hops, timeout=timeout)
     else:
-        return template('termination', name=our_name)
+        client_ip = request.environ.get('REMOTE_ADDR')
+        return template('termination', name=our_name, ip=client_ip)
     
 if __name__ == '__main__':
     run(host='0.0.0.0', port=8080)
