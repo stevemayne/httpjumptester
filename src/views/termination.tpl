@@ -1,1 +1,1 @@
-<!-- Journey terminated at {{name}} -->
+Terminated at {{name}}, request from {{ip}}
