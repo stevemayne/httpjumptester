@@ -8,6 +8,9 @@ bottle.TEMPLATE_PATH.insert(0, os.path.join(os.path.dirname(os.path.abspath(__fi
 
 our_name = os.environ.get('IDENTIFIER', 'Unnamed')
 
+def get_remote_ip():
+    request.environ.get('HTTP_X_FORWARDED_FOR') or request.environ.get('REMOTE_ADDR')
+
 def do_next_hop(host, hops, timeout=5):
     url = 'http://{0}/jump/'.format(host)
     if hops:
@@ -24,7 +27,7 @@ def identify():
 
 @route('/jump/')
 def jump_terminator():
-    client_ip = request.environ.get('REMOTE_ADDR')
+    client_ip = get_remote_ip()
     return template('termination', name=our_name, ip=client_ip)
 
 @route('/jump/<hoproute:path>')
@@ -40,7 +43,7 @@ def jump(hoproute):
         hops = hops[1:]
         return do_next_hop(next_hop, hops, timeout=timeout)
     else:
-        client_ip = request.environ.get('REMOTE_ADDR')
+        client_ip = get_remote_ip()
         return template('termination', name=our_name, ip=client_ip)
     
 if __name__ == '__main__':
