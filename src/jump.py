@@ -24,7 +24,8 @@ def identify():
 
 @route('/jump/')
 def jump_terminator():
-    return template('termination', name=our_name)
+    client_ip = request.environ.get('REMOTE_ADDR')
+    return template('termination', name=our_name, ip=client_ip)
 
 @route('/jump/<hoproute:path>')
 def jump(hoproute):
