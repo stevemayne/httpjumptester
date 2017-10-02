@@ -3,6 +3,7 @@ import bottle
 from bottle import request, route, run, template
 import urllib2
 import os
+import wsgiserver
 
 bottle.TEMPLATE_PATH.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'views'))
 
@@ -47,6 +48,6 @@ def jump(hoproute):
         return template('termination', name=our_name, ip=client_ip)
     
 if __name__ == '__main__':
-    run(host='0.0.0.0', port=8080)
-    
-    
+    wsgiapp = bottle.default_app()
+    httpd = wsgiserver.Server(wsgiapp, listen='0.0.0.0', port=8080)
+    httpd.serve_forever()
