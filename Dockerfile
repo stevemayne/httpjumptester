@@ -10,8 +10,10 @@ RUN apt-get update && \
   	rm -rf /var/lib/apt/lists/*
 
 COPY src/ /code
+
 RUN pip install -r /code/requirements.txt
 RUN chmod +x /code/jump.py
+
 ENV IDENTIFIER Unnamed
 EXPOSE 8080
 
