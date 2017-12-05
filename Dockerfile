@@ -12,7 +12,6 @@ RUN apt-get update && \
 COPY src/ /code
 RUN pip install -r /code/requirements.txt
 RUN chmod +x /code/jump.py
-
 ENV IDENTIFIER Unnamed
 EXPOSE 8080
 
