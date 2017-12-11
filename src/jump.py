@@ -24,7 +24,8 @@ def do_next_hop(host, hops, timeout=5):
 
 @route('/')
 def identify():
-    return template('id_display', name=our_name)
+    our_name_internal = our_name + ' Woo!'
+    return template('id_display', name=our_name_internal)
 
 @route('/jump/')
 def jump_terminator():
